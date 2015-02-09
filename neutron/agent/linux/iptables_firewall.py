@@ -201,7 +201,7 @@ class IptablesFirewallDriver(firewall.FirewallDriver):
                     table.add_rule(chain_name,
                                    '-m mac --mac-source %s -s %s -j RETURN'
                                    % (mac, ip))
-            table.add_rule(chain_name, '-j DROP')
+            #table.add_rule(chain_name, '-j DROP')
             rules.append('-j $%s' % chain_name)
 
     def _build_ipv4v6_mac_ip_list(self, mac, ip_address, mac_ipv4_pairs,
@@ -265,7 +265,7 @@ class IptablesFirewallDriver(firewall.FirewallDriver):
             self._spoofing_rule(port,
                                 ipv4_iptables_rule,
                                 ipv6_iptables_rule)
-            ipv4_iptables_rule += self._drop_dhcp_rule()
+            #ipv4_iptables_rule += self._drop_dhcp_rule()
         if direction == INGRESS_DIRECTION:
             ipv6_iptables_rule += self._accept_inbound_icmpv6()
         ipv4_iptables_rule += self._convert_sgr_to_iptables_rules(
